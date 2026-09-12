@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087f6b"><link rel="manifest" href="manifest.json">
+<title>AMG Delivery</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef7f5;font-family:Arial,sans-serif;color:#173a33}
+.app{max-width:430px;margin:auto;min-height:100vh;background:#fff}
+header{background:#087f6b;color:#fff;padding:20px 16px 22px;border-radius:0 0 24px 24px}
+.logo{font-size:28px;font-weight:800}.tag{margin-top:3px}.loc{margin-top:12px;background:#ffffff22;padding:10px;border-radius:12px}
+.search{margin-top:12px;background:#fff;color:#7b8986;padding:13px;border-radius:13px}
+.banner{margin:16px;padding:18px;border-radius:18px;background:#dcf5ee}
+.banner b{font-size:22px}.banner p{margin:7px 0}.phone{font-size:18px;font-weight:800}
+h3{margin:18px 16px 10px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px}
+.card{border:1px solid #e1ebe8;border-radius:15px;padding:12px;box-shadow:0 2px 9px #0000000b}.cat{font-size:12px;background:#e7f5f1;padding:5px 8px;border-radius:9px;display:inline-block}
+.price{font-weight:800;margin:7px 0}.btn{border:0;background:#087f6b;color:#fff;padding:10px;border-radius:10px;width:100%;font-weight:700}
+.box{margin:16px;padding:15px;border-radius:15px;background:#f2f8f6}input,textarea,select{width:100%;padding:11px;margin:6px 0 10px;border:1px solid #d5e2de;border-radius:9px}
+nav{position:sticky;bottom:0;background:#087f6b;color:#fff;display:flex;justify-content:space-around;padding:11px 4px}
+nav button{background:none;border:0;color:#fff;font-size:12px}footer{text-align:center;padding:16px;color:#71817d;font-size:12px}
+</style></head>
+<body><div class="app">
+<header><div class="logo">💊 AMG Delivery</div><div class="tag">ওষুধ আপনার দরজায়</div>
+<div class="loc">📍 ডেলিভারি এলাকা: <b>জয়পুরহাট ও ক্ষেতলাল</b></div>
+<div class="search">🔎 ওষুধের নাম সার্চ করুন...</div></header>
+<div class="banner"><b>ঘরে বসেই ওষুধ অর্ডার করুন</b><p>দ্রুত ও সহজ Home Delivery</p><div class="phone">📞 01890042002</div></div>
+<h3>ক্যাটাগরি</h3><div class="grid">
+<div class="card">💊<br><b>সাধারণ ওষুধ</b></div><div class="card">🧴<br><b>ভিটামিন</b></div>
+<div class="card">🩹<br><b>স্বাস্থ্যসামগ্রী</b></div><div class="card">👶<br><b>শিশুদের পণ্য</b></div></div>
+<h3>জনপ্রিয় পণ্য</h3><div class="grid">
+<div class="card"><span class="cat">জ্বর ও ব্যথা</span><h4>Paracetamol 500mg</h4><div class="price">৳ 12</div><button class="btn" onclick="add('Paracetamol 500mg')">কার্টে যোগ</button></div>
+<div class="card"><span class="cat">গ্যাস্ট্রিক</span><h4>Omeprazole 20mg</h4><div class="price">৳ 45</div><button class="btn" onclick="add('Omeprazole 20mg')">কার্টে যোগ</button></div>
+<div class="card"><span class="cat">ভিটামিন</span><h4>Vitamin C</h4><div class="price">৳ 30</div><button class="btn" onclick="add('Vitamin C')">কার্টে যোগ</button></div>
+<div class="card"><span class="cat">অন্য</span><h4>Multivitamin</h4><div class="price">৳ 120</div><button class="btn" onclick="add('Multivitamin')">কার্টে যোগ</button></div></div>
+<h3>অর্ডার</h3><div class="box"><div id="cart">কার্ট খালি</div>
+<input id="name" placeholder="আপনার নাম"><input id="phone" value="01890042002" placeholder="মোবাইল নম্বর">
+<textarea id="address" rows="3" placeholder="ডেলিভারি ঠিকানা"></textarea>
+<select id="payment"><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option></select>
+<button class="btn" onclick="order()">অর্ডার কনফার্ম করুন</button><p id="msg"></p></div>
+<footer>AMG Delivery • জয়পুরহাট ও ক্ষেতলাল<br>প্রেসক্রিপশন-প্রয়োজনীয় ওষুধ বৈধ প্রেসক্রিপশন যাচাই সাপেক্ষে।</footer>
+<nav><button>🏠<br>হোম</button><button>🔎<br>সার্চ</button><button>🛒<br>কার্ট</button><button>📦<br>অর্ডার</button><button>👤<br>প্রোফাইল</button></nav>
+</div>
+<script>
+let cart=[];
+function add(x){cart.push(x);document.getElementById('cart').innerText='কার্টে: '+cart.join(', ')}
+function order(){let n=document.getElementById('name').value,a=document.getElementById('address').value;
+document.getElementById('msg').innerText=(!cart.length?'একটি পণ্য কার্টে যোগ করুন।':(!n||!a?'নাম ও ঠিকানা দিন।':'অর্ডার প্রস্তুত। যোগাযোগ: 01890042002'))}
+</script>
+<script>if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js')</script>
+</body></html>
